@@ -12,6 +12,12 @@ public class StateMachine<T> where T : System.Enum {
         stateDict = new Dictionary<T, StateBase>();
     }
 
+    public StateMachine(T startEnum, StateBase startState) {
+        stateDict = new Dictionary<T, StateBase>();
+        RegisterState(startEnum, startState);
+        SwitchState(startEnum);
+    }
+
     public void Update() {
         if (_currentState != null) _currentState.OnStateUpdate();
     }
