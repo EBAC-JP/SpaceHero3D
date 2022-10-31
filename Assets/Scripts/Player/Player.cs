@@ -5,10 +5,13 @@ using DG.Tweening;
 
 public class Player : Singleton<Player> {
 
+    [SerializeField] Animator myAnim;
+    [SerializeField] string runVariable = "Run";
     [Header("Moviments")]
     [SerializeField] float jumpForce;
     [SerializeField] float speed;
     [SerializeField] float friction;
+    [Header("Keyboard")]
     [SerializeField] KeyCode jumpKey;
     [SerializeField] KeyCode frontKey;
     [SerializeField] KeyCode backKey;
@@ -29,7 +32,7 @@ public class Player : Singleton<Player> {
     public StateMachine<PlayerStates> stateMachine;
 
     Directions _direction;
-    Vector3 _velocity;
+    [SerializeField] Vector3 _velocity;
     Rigidbody _myRigid;
 
     void Start() {
@@ -80,6 +83,10 @@ public class Player : Singleton<Player> {
         else if (_direction == Directions.BACK) transform.DORotate(new Vector3(0, 180, 0), .1f);
         else if (_direction == Directions.LEFT) transform.DORotate(new Vector3(0, 270, 0), .1f);
         else if (_direction == Directions.RIGHT) transform.DORotate(new Vector3(0, 90, 0), .1f);
+    }
+
+    public void RunAnimation(bool value) {
+        myAnim.SetBool(runVariable, value);
     }
 
     public void DefineVelocity() {

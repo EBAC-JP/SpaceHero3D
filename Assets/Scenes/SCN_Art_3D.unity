@@ -1459,6 +1459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d1659f044149144ba8113cbb1b1b47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAnim: {fileID: 1755247081}
+  runVariable: Run
   jumpForce: 8
   speed: 5
   friction: -0.1
@@ -1467,7 +1469,6 @@ MonoBehaviour:
   backKey: 115
   leftKey: 97
   rightKey: 100
-  _direction: 3
 --- !u!1001 &330281169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8464,6 +8465,11 @@ PrefabInstance:
 --- !u!4 &1755247080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5156129202013452133, guid: 89e20167823a30d459856414377997d1, type: 3}
+  m_PrefabInstance: {fileID: 1755247079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1755247081 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7193805671317595757, guid: 89e20167823a30d459856414377997d1, type: 3}
   m_PrefabInstance: {fileID: 1755247079}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1765309616
