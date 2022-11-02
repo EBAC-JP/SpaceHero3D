@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class Player : Singleton<Player> {
 
-    [SerializeField] float speed;
     [SerializeField] float rotateSpeed;
     [SerializeField] float gravity;
     [Header("Animations")]
@@ -14,9 +13,14 @@ public class Player : Singleton<Player> {
     [Header("Jump")]
     [SerializeField] float jumpSpeed;
     [SerializeField] KeyCode jumpKey;
+    [Header("Run")]
+    [SerializeField] float speed;
+    [SerializeField] float runMultiplier;
+    [SerializeField] KeyCode runKey;
 
     CharacterController _myChar;
     float _currentSpeed, _verticalSpeed;
+    bool _isWalking;
 
     void Start() {
         _myChar = GetComponent<CharacterController>();
@@ -25,6 +29,7 @@ public class Player : Singleton<Player> {
 
     void Update() {
         _currentSpeed = Input.GetAxis("Vertical");
+        _isWalking = _currentSpeed != 0;
         _verticalSpeed -= gravity * Time.deltaTime;
         HandleJump();
         HandleMoviments();
@@ -38,7 +43,7 @@ public class Player : Singleton<Player> {
     }
 
     void HandleAnimation() {
-        myAnim.SetBool(runTrigger, _currentSpeed != 0);
+        myAnim.SetBool(runTrigger, _isWalking);
     }
 
     void HandleMoviments() {
@@ -46,6 +51,12 @@ public class Player : Singleton<Player> {
         transform.Rotate(rotation);
         Vector3 frontSpeed = transform.forward * _currentSpeed * speed;
         frontSpeed.y = _verticalSpeed;
+        if (_isWalking && Input.GetKey(runKey)){
+            frontSpeed *= runMultiplier;
+            myAnim.speed = runMultiplier;
+        } else {
+            myAnim.speed = 1;
+        }
         _myChar.Move(frontSpeed * Time.deltaTime);
     }
 
