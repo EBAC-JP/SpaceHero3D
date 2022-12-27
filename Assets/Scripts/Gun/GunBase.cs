@@ -11,9 +11,14 @@ public class GunBase : MonoBehaviour {
     [SerializeField] int maxShoots;
 
     Transform _shootPosition;
+    UIGunUpdater _gunUpdater;
     Coroutine _currentCoroutine;
     int _currentShoots;
     bool _recharging = false;
+
+    public void Awake() {
+        _gunUpdater.UpdateValue(1);
+    }
 
     public void StartShoot() {
         StopShoot();
@@ -28,23 +33,48 @@ public class GunBase : MonoBehaviour {
         _shootPosition = shootPosition;
     }
 
+    public void SetGunUpdater(UIGunUpdater gunUpdater) {
+        _gunUpdater = gunUpdater;
+    }
+
+    void CheckRecharge() {
+        if (_currentShoots >= maxShoots) {
+            StopShoot();
+            StartRecharge();
+        }
+    }
+
+    void StartRecharge() {
+        _recharging = true;
+        StartCoroutine(Recharge());
+    }
+
     void Shoot() {
         var projectile = Instantiate(projectilePrefab);
         projectile.transform.position = _shootPosition.position;
         projectile.transform.rotation = _shootPosition.rotation;
     }
 
+    IEnumerator Recharge() {
+        float time = 0;
+        while(time < rechargeTime) {
+            time += Time.deltaTime;
+            _gunUpdater.UpdateValue(time / rechargeTime);
+            yield return new WaitForEndOfFrame();
+        }
+        _currentShoots = 0;
+        _recharging = false;
+    }
+
     IEnumerator ShootCoroutine() {
+        if (_recharging) yield break;
         while(true) {
             if (_currentShoots < maxShoots) {
                 _currentShoots++;
+                CheckRecharge();
+                _gunUpdater.UpdateValue(_currentShoots, maxShoots);
                 Shoot();
                 yield return new WaitForSeconds(cooldownShoot);
-            } else {
-                Debug.Log("Recarregando!");
-                yield return new WaitForSeconds(rechargeTime);
-                Debug.Log("Pronto para Atirar!");
-                _currentShoots = 0;
             }
         }
     }

@@ -9,6 +9,7 @@ public class PlayerShoot : PlayerAbility {
     [SerializeField] Transform gunLocation;
     [SerializeField] Transform shootPosition;
     [SerializeField] GunBase gun;
+    [SerializeField] UIGunUpdater UIGunUpdater;
 
     Coroutine _currentCoroutine;
     GunBase _currentGun;
@@ -23,6 +24,7 @@ public class PlayerShoot : PlayerAbility {
     void CreateGun() {
         _currentGun = Instantiate(gun, gunLocation);
         _currentGun.SetShootPosition(shootPosition);
+        _currentGun.SetGunUpdater(UIGunUpdater);
     }
 
     void StartShoot() {
