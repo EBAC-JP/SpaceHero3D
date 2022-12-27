@@ -1443,7 +1443,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324828298}
-  m_LocalRotation: {x: 0.24253562, y: 1.6858226e-15, z: -3.8335885e-16, w: 0.97014254}
+  m_LocalRotation: {x: 0.24253562, y: 9.053432e-17, z: -6.0730304e-17, w: 0.97014254}
   m_LocalPosition: {x: 420, y: 2.6, z: 34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1503,6 +1503,7 @@ MonoBehaviour:
   gunLocation: {fileID: 1657961894}
   shootPosition: {fileID: 2105599429}
   submachine: {fileID: 4901701930442404926, guid: 04a4400feb455694183e7f111f5c6195, type: 3}
+  pistol: {fileID: 3430821796997269126, guid: 6e4aa015c5ef00444a7d4f3f9a1c804e, type: 3}
   UIGunUpdater: {fileID: 1789782054}
 --- !u!4 &326556780
 Transform:
@@ -7389,7 +7390,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500100153}
-  m_LocalRotation: {x: 0.24253562, y: 1.6858226e-15, z: -3.8335885e-16, w: 0.97014254}
+  m_LocalRotation: {x: 0.24253562, y: 9.053432e-17, z: -6.0730304e-17, w: 0.97014254}
   m_LocalPosition: {x: 420, y: 2.6, z: 34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
