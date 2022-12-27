@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerShoot : PlayerAbility {
 
     [SerializeField] InputAction shoot;
-    [SerializeField] ProjectileBase projectilePrefab;
-    [SerializeField] Transform positionShoot;
-    [SerializeField] float cooldownShoot;
+    [SerializeField] GunBase gun;
 
     Coroutine _currentCoroutine;
 
@@ -19,25 +17,10 @@ public class PlayerShoot : PlayerAbility {
     }
 
     void StartShoot() {
-        StopShoot();
-        _currentCoroutine = StartCoroutine(ShootCoroutine());
+        gun.StartShoot();
     }
 
     void StopShoot() {
-        if (_currentCoroutine != null) StopCoroutine(_currentCoroutine);
+        gun.StopShoot(); 
     }
-
-    void Shoot() {
-        var projectile = Instantiate(projectilePrefab);
-        projectile.transform.position = positionShoot.position;
-        projectile.transform.rotation = positionShoot.rotation;
-    }
-
-    IEnumerator ShootCoroutine() {
-        while(true) {
-            Shoot();
-            yield return new WaitForSeconds(cooldownShoot);
-        }
-    }
-
 }
