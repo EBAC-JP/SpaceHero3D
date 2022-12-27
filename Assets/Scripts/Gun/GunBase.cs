@@ -5,30 +5,33 @@ using UnityEngine;
 public class GunBase : MonoBehaviour {
 
     [SerializeField] ProjectileBase projectilePrefab;
-    [SerializeField] Transform positionShoot;
     [Header("Gun Limits")]
     [SerializeField] float cooldownShoot;
     [SerializeField] float rechargeTime;
     [SerializeField] int maxShoots;
 
+    Transform _shootPosition;
     Coroutine _currentCoroutine;
     int _currentShoots;
     bool _recharging = false;
 
     public void StartShoot() {
         StopShoot();
-        if (!_recharging) _currentCoroutine = StartCoroutine(ShootCoroutine());
+        _currentCoroutine = StartCoroutine(ShootCoroutine());
     }
 
     public void StopShoot() {
         if (_currentCoroutine != null) StopCoroutine(_currentCoroutine);
-        _recharging = false;
+    }
+
+    public void SetShootPosition(Transform shootPosition) {
+        _shootPosition = shootPosition;
     }
 
     void Shoot() {
         var projectile = Instantiate(projectilePrefab);
-        projectile.transform.position = positionShoot.position;
-        projectile.transform.rotation = positionShoot.rotation;
+        projectile.transform.position = _shootPosition.position;
+        projectile.transform.rotation = _shootPosition.rotation;
     }
 
     IEnumerator ShootCoroutine() {
@@ -38,10 +41,10 @@ public class GunBase : MonoBehaviour {
                 Shoot();
                 yield return new WaitForSeconds(cooldownShoot);
             } else {
-                _recharging = true;
-                _currentShoots = 0;
+                Debug.Log("Recarregando!");
                 yield return new WaitForSeconds(rechargeTime);
-                _recharging = false;
+                Debug.Log("Pronto para Atirar!");
+                _currentShoots = 0;
             }
         }
     }
