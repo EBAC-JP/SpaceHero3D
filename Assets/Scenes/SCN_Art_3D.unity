@@ -1443,7 +1443,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324828298}
-  m_LocalRotation: {x: 0.24253564, y: 0.0000000119759545, z: -0.0000000029939882, w: 0.97014254}
+  m_LocalRotation: {x: 0.24253562, y: 9.053432e-17, z: -6.0730304e-17, w: 0.97014254}
   m_LocalPosition: {x: 420, y: 2.6, z: 34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1463,6 +1463,7 @@ GameObject:
   - component: {fileID: 326556781}
   - component: {fileID: 326556782}
   - component: {fileID: 326556783}
+  - component: {fileID: 326556779}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1470,6 +1471,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &326556779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326556778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5994b6467899710459a1cc5eb5e07507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoot:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1357a0b9-953d-4834-bf3d-a78a4cdb5a0d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 738243db-46fe-4843-b439-17f616a2742a
+      m_Path: <Mouse>/leftButton
+      m_Interactions: Hold
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+    m_Flags: 0
+  projectilePrefab: {fileID: 8045105011210427552, guid: c7f2d791516d5e342b2dfbc5475195f8, type: 3}
+  positionShoot: {fileID: 2105599429}
+  cooldownShoot: 0.5
 --- !u!4 &326556780
 Transform:
   m_ObjectHideFlags: 0
@@ -7253,7 +7286,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500100153}
-  m_LocalRotation: {x: 0.24253564, y: 0.0000000119759545, z: -0.0000000029939882, w: 0.97014254}
+  m_LocalRotation: {x: 0.24253562, y: 9.053432e-17, z: -6.0730304e-17, w: 0.97014254}
   m_LocalPosition: {x: 420, y: 2.6, z: 34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -10495,6 +10528,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8043139984699745673, guid: 6a85956ddea0a304da62a369edd2c2fa, type: 3}
   m_PrefabInstance: {fileID: 2102252207}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2105599429 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4280592042955761148, guid: 89e20167823a30d459856414377997d1, type: 3}
+  m_PrefabInstance: {fileID: 1755247079}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2105924100
 PrefabInstance:
