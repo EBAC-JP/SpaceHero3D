@@ -8,30 +8,45 @@ public class PlayerShoot : PlayerAbility {
     [SerializeField] InputAction shoot;
     [SerializeField] Transform gunLocation;
     [SerializeField] Transform shootPosition;
-    [SerializeField] GunBase gun;
+    [SerializeField] GunBase submachine;
+    [SerializeField] GunBase pistol;
     [SerializeField] UIGunUpdater UIGunUpdater;
 
     Coroutine _currentCoroutine;
-    GunBase _currentGun;
+    GunBase _submachine, _pistol;
 
     protected override void Init() {
-        CreateGun();
+        CreateGuns();
         shoot.Enable();
         shoot.performed += ctx => StartShoot();
         shoot.canceled += ctx => StopShoot();
     }
 
-    void CreateGun() {
-        _currentGun = Instantiate(gun, gunLocation);
-        _currentGun.SetShootPosition(shootPosition);
-        _currentGun.SetGunUpdater(UIGunUpdater);
+    void CreateGuns() {
+        CreateSubMachine();
+        CreatePistol();
     }
 
+    void CreateSubMachine() {
+        _submachine = Instantiate(submachine, gunLocation);
+        _submachine.SetShootPosition(shootPosition);
+        _submachine.SetGunUpdater(UIGunUpdater);
+    }
+
+    void CreatePistol() {
+        _pistol = Instantiate(pistol, gunLocation);
+        _pistol.SetShootPosition(shootPosition);
+        _pistol.SetGunUpdater(UIGunUpdater);
+    }
+
+
     void StartShoot() {
-        _currentGun.StartShoot();
+        if (player.GetGunIndex() == 0) _submachine.StartShoot();
+        else if (player.GetGunIndex() == 1) _pistol.StartShoot();
     }
 
     void StopShoot() {
-        _currentGun.StopShoot(); 
+        if (player.GetGunIndex() == 0) _submachine.StopShoot();
+        else if (player.GetGunIndex() == 1) _pistol.StopShoot();
     }
 }

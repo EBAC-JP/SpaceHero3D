@@ -1443,7 +1443,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324828298}
-  m_LocalRotation: {x: 0.2425356, y: -0.000000028912504, z: 0.000000007228125, w: 0.97014254}
+  m_LocalRotation: {x: 0.24253562, y: 1.6858226e-15, z: -3.8335885e-16, w: 0.97014254}
   m_LocalPosition: {x: 420, y: 2.6, z: 34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1502,7 +1502,7 @@ MonoBehaviour:
     m_Flags: 0
   gunLocation: {fileID: 1657961894}
   shootPosition: {fileID: 2105599429}
-  gun: {fileID: 973387602493173058, guid: 6e4aa015c5ef00444a7d4f3f9a1c804e, type: 3}
+  submachine: {fileID: 4901701930442404926, guid: 04a4400feb455694183e7f111f5c6195, type: 3}
   UIGunUpdater: {fileID: 1789782054}
 --- !u!4 &326556780
 Transform:
@@ -7389,7 +7389,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500100153}
-  m_LocalRotation: {x: 0.2425356, y: -0.000000028912504, z: 0.000000007228125, w: 0.97014254}
+  m_LocalRotation: {x: 0.24253562, y: 1.6858226e-15, z: -3.8335885e-16, w: 0.97014254}
   m_LocalPosition: {x: 420, y: 2.6, z: 34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -9028,7 +9028,7 @@ GameObject:
   - component: {fileID: 1789782052}
   - component: {fileID: 1789782054}
   m_Layer: 5
-  m_Name: GunLoader
+  m_Name: UIGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

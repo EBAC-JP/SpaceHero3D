@@ -16,10 +16,6 @@ public class GunBase : MonoBehaviour {
     int _currentShoots;
     bool _recharging = false;
 
-    public void Awake() {
-        _gunUpdater.UpdateValue(1);
-    }
-
     public void StartShoot() {
         StopShoot();
         _currentCoroutine = StartCoroutine(ShootCoroutine());

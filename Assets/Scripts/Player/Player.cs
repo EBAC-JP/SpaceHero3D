@@ -21,6 +21,7 @@ public class Player : Singleton<Player> {
     CharacterController _myChar;
     float _currentSpeed, _verticalSpeed;
     bool _isWalking;
+    int _gunIndex = 0;
 
     void Start() {
         _myChar = GetComponent<CharacterController>();
@@ -34,6 +35,12 @@ public class Player : Singleton<Player> {
         HandleJump();
         HandleMoviments();
         HandleAnimation();
+        HandleGuns();
+    }
+
+    void HandleGuns() {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) _gunIndex = 0;
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) _gunIndex = 1;
     }
 
     void HandleJump() {
@@ -58,6 +65,10 @@ public class Player : Singleton<Player> {
             myAnim.speed = 1;
         }
         _myChar.Move(frontSpeed * Time.deltaTime);
+    }
+
+    public int GetGunIndex() {
+        return _gunIndex;
     }
 
 }
