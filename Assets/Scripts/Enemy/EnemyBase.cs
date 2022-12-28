@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using NaughtyAttributes;
 
-public class EnemyBase : MonoBehaviour {
+public class EnemyBase : MonoBehaviour, IDamageable {
     
     [SerializeField] int startLife; 
     [Header("Born Animation")]
@@ -16,9 +16,11 @@ public class EnemyBase : MonoBehaviour {
 
     int _currentLife;
     AnimationBase _animation;
+    Collider _collider;
 
     void Awake() {
         _animation = GetComponent<AnimationBase>();
+        _collider = GetComponent<Collider>();
         if (bornAnimation) BornAnimation();
         ResetLife();
     }
@@ -31,12 +33,8 @@ public class EnemyBase : MonoBehaviour {
         transform.DOScale(0, startDuration).SetEase(startEase).From();
     }
 
-    [Button]
-    void Damage() {
-        OnDamage(3);
-    }
-
     protected virtual void OnKill() {
+        if (_collider != null) _collider.enabled = false;
         Destroy(gameObject, deathDuration);
         _animation.PlayAnimationByTrigger(AnimationType.DEATH);
     }

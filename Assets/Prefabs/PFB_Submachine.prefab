@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9d536f4b4a9f24096e20924495416d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8045105011210427552, guid: c7f2d791516d5e342b2dfbc5475195f8, type: 3}
+  projectilePrefab: {fileID: 8045105011210427552, guid: ab69c34ce35d0cd4383bb448803868fc, type: 3}
   cooldownShoot: 0.2
   rechargeTime: 3
   maxShoots: 20

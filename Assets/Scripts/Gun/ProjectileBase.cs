@@ -16,4 +16,10 @@ public class ProjectileBase : MonoBehaviour {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
     }
 
+    void OnCollisionEnter(Collision collision) {
+        var damageable = collision.transform.GetComponent<IDamageable>();
+        if (damageable != null) damageable.OnDamage(damage);
+        Destroy(gameObject);
+    }
+
 }
