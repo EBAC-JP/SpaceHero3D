@@ -13,6 +13,8 @@ public class EnemyBase : MonoBehaviour, IDamageable {
     [SerializeField] bool bornAnimation;
     [Header("Animation")]
     [SerializeField] float deathDuration;
+    [Header("Damage Animation")]
+    [SerializeField] ParticleSystem particles;
 
     int _currentLife;
     AnimationBase _animation;
@@ -40,6 +42,7 @@ public class EnemyBase : MonoBehaviour, IDamageable {
     }
 
     public void OnDamage(int damage) {
+        if (particles != null) particles.Play();
         _currentLife -= damage;
         if (_currentLife <= 0) OnKill();
     }
