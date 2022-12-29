@@ -4948,6 +4948,8 @@ MonoBehaviour:
   speed: 10
   minDistance: 1
   waypoints: []
+  attackAmount: 5
+  timeBetweenAttacks: 0.1
 --- !u!54 &5018057982445288756
 Rigidbody:
   m_ObjectHideFlags: 0
