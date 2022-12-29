@@ -12,7 +12,6 @@ public class AnimationBase : MonoBehaviour {
         AnimationSetup setup = animationSetups.Find(i => i.animationType == type);
         if (setup != null) animator.SetTrigger(setup.animationTrigger);
     }
-
 }
 
 public enum AnimationType {

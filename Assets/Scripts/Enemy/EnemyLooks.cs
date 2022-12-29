@@ -10,5 +10,4 @@ public class EnemyLooks : EnemyBase {
     void Update() {
         transform.LookAt(lookAt.position);
     }
-
 }

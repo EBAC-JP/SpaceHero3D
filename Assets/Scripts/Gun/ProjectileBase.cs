@@ -25,5 +25,4 @@ public class ProjectileBase : MonoBehaviour {
         }
         Destroy(gameObject);
     }
-
 }

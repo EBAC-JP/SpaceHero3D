@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Player : Singleton<Player> {
+public class Player : Singleton<Player>, IDamageable {
 
     [SerializeField] float rotateSpeed;
     [SerializeField] float gravity;
     [Header("Animations")]
     [SerializeField] Animator myAnim;
     [SerializeField] string runTrigger = "Run";
+    [SerializeField] List<FlashColor> flashes;
     [Header("Jump")]
     [SerializeField] float jumpSpeed;
     [SerializeField] KeyCode jumpKey;
@@ -71,4 +72,9 @@ public class Player : Singleton<Player> {
         return _gunIndex;
     }
 
+    public void OnDamage(int damage) {
+        flashes.ForEach(i => i.Flash());
+    }
+
+    public void OnDamage(int damage, Vector3 direction) {}
 }
