@@ -67,8 +67,8 @@ MonoBehaviour:
     animationTrigger: Idle
   - animationType: 2
     animationTrigger: Death
-  - animationType: 3
-    animationTrigger: Attack
+  - animationType: 1
+    animationTrigger: Run
 --- !u!114 &5955247028450618922
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,10 +22,10 @@ public class StateMachine<T> where T : System.Enum {
         if (_currentState != null) _currentState.OnStateUpdate();
     }
 
-    public void SwitchState(T state, GameObject obj = null) {
+    public void SwitchState(T state, params object[] objs) {
         if (_currentState != null) _currentState.OnStateExit();
         _currentState = stateDict[state];
-        _currentState.OnStateEnter(obj);
+        _currentState.OnStateEnter(objs);
     }
 
     public void RegisterState(T typeEnum, StateBase state) {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateBase {
 
-    public virtual void OnStateEnter(GameObject obj = null) {
+    public virtual void OnStateEnter(params object[] objs) {
         Debug.Log("State Enter not implemented!");
     }
 
