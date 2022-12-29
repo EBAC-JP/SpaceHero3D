@@ -18,7 +18,11 @@ public class ProjectileBase : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision) {
         var damageable = collision.transform.GetComponent<IDamageable>();
-        if (damageable != null) damageable.OnDamage(damage);
+        if (damageable != null) {
+            Vector3 direction = -(collision.transform.position - transform.position).normalized;
+            direction.y = 0;
+            damageable.OnDamage(damage, direction);
+        }
         Destroy(gameObject);
     }
 

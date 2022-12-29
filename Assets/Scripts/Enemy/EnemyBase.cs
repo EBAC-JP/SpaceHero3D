@@ -42,8 +42,9 @@ public class EnemyBase : MonoBehaviour, IDamageable {
         _animation.PlayAnimationByTrigger(AnimationType.DEATH);
     }
 
-    public void OnDamage(int damage) {
+    public void OnDamage(int damage, Vector3 direction) {
         if (particles != null) particles.Play();
+        transform.DOMove(transform.position - direction, .1f);
         _currentLife -= damage;
         if (_currentLife <= 0) OnKill();
     }
