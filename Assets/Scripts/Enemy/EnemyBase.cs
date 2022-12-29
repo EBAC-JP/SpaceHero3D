@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using NaughtyAttributes;
 
 public class EnemyBase : MonoBehaviour, IDamageable {
     
-    [SerializeField] int startLife; 
+    [SerializeField] int startLife;
     [Header("Born Animation")]
-    [SerializeField] float startDuration;
+    [SerializeField] protected float startDuration;
     [SerializeField] Ease startEase;
     [SerializeField] bool bornAnimation;
     [Header("Animation")]
@@ -16,8 +15,9 @@ public class EnemyBase : MonoBehaviour, IDamageable {
     [Header("Damage Animation")]
     [SerializeField] ParticleSystem particles;
 
+    protected AnimationBase _animation;
+    protected bool _isDead = false;
     int _currentLife;
-    AnimationBase _animation;
     Collider _collider;
 
     void Awake() {
@@ -36,6 +36,7 @@ public class EnemyBase : MonoBehaviour, IDamageable {
     }
 
     protected virtual void OnKill() {
+        _isDead = true;
         if (_collider != null) _collider.enabled = false;
         Destroy(gameObject, deathDuration);
         _animation.PlayAnimationByTrigger(AnimationType.DEATH);

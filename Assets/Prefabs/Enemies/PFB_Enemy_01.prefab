@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6535722707302185097}
-  - component: {fileID: 6535722707302185096}
   - component: {fileID: 6535722707302185098}
   - component: {fileID: 6535722707302185099}
+  - component: {fileID: 5955247028450618922}
   m_Layer: 0
   m_Name: PFB_Enemy_01
   m_TagString: Untagged
@@ -35,24 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6535722707302185096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6535722707302185103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63bcee47d801d4c479e3fe0e4020b0b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startLife: 10
-  startDuration: 2
-  startEase: 27
-  bornAnimation: 1
-  deathDuration: 2
-  particles: {fileID: 6535722708471207626}
 --- !u!65 &6535722707302185098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86,6 +68,27 @@ MonoBehaviour:
     animationTrigger: Death
   - animationType: 3
     animationTrigger: Attack
+--- !u!114 &5955247028450618922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6535722707302185103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250e397cb37975c41b34c290986af3d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLife: 10
+  startDuration: 2
+  startEase: 27
+  bornAnimation: 1
+  deathDuration: 2
+  particles: {fileID: 6535722708471207626}
+  waypoints: []
+  minDistance: 0
+  speed: 0
 --- !u!1 &6535722708471207625
 GameObject:
   m_ObjectHideFlags: 0
