@@ -4871,9 +4871,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1882450110608590233}
-  - component: {fileID: 1882450110608590232}
   - component: {fileID: 1882450110608590234}
   - component: {fileID: 1882450110608590235}
+  - component: {fileID: 7502627336057958644}
   m_Layer: 0
   m_Name: PFB_Enemy_02
   m_TagString: Untagged
@@ -4897,24 +4897,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1882450110608590232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882450110608590239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63bcee47d801d4c479e3fe0e4020b0b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startLife: 15
-  startDuration: 2
-  startEase: 27
-  bornAnimation: 1
-  deathDuration: 2
-  particles: {fileID: 1882450109932399578}
 --- !u!65 &1882450110608590234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4948,6 +4930,25 @@ MonoBehaviour:
     animationTrigger: Death
   - animationType: 3
     animationTrigger: Attack
+--- !u!114 &7502627336057958644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882450110608590239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e36ab94ddd49324da74c74b61f20090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLife: 15
+  startDuration: 2
+  startEase: 27
+  bornAnimation: 1
+  deathDuration: 2
+  particles: {fileID: 1882450109932399578}
+  lookAt: {fileID: 0}
 --- !u!1001 &2378421275635034339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4988,15 +4989,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6281779893053664936, guid: 8bec79f815163ae43b0faf61a3b8baca, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6281779893053664936, guid: 8bec79f815163ae43b0faf61a3b8baca, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6281779893053664936, guid: 8bec79f815163ae43b0faf61a3b8baca, type: 3}
-      propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6281779893053664936, guid: 8bec79f815163ae43b0faf61a3b8baca, type: 3}
