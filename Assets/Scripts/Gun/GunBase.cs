@@ -33,6 +33,16 @@ public class GunBase : MonoBehaviour {
         _gunUpdater = gunUpdater;
     }
 
+    public float GetCooldown() {
+        return cooldownShoot;
+    }
+    
+    public void Shoot() {
+        var projectile = Instantiate(projectilePrefab);
+        projectile.transform.position = _shootPosition.position;
+        projectile.transform.rotation = _shootPosition.rotation;
+    }
+
     void CheckRecharge() {
         if (_currentShoots >= maxShoots) {
             StopShoot();
@@ -43,12 +53,6 @@ public class GunBase : MonoBehaviour {
     void StartRecharge() {
         _recharging = true;
         StartCoroutine(Recharge());
-    }
-
-    void Shoot() {
-        var projectile = Instantiate(projectilePrefab);
-        projectile.transform.position = _shootPosition.position;
-        projectile.transform.rotation = _shootPosition.rotation;
     }
 
     IEnumerator Recharge() {

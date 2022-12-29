@@ -76,5 +76,8 @@ public class Player : Singleton<Player>, IDamageable {
         flashes.ForEach(i => i.Flash());
     }
 
-    public void OnDamage(int damage, Vector3 direction) {}
+    public void OnDamage(int damage, Vector3 direction) {
+        transform.DOMove(transform.position - direction, .1f);
+        flashes.ForEach(i => i.Flash());
+    }
 }
