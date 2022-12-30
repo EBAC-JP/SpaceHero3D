@@ -29,6 +29,11 @@ public class BossBase : MonoBehaviour, IDamageable {
     [SerializeField] int attackAmount;
     [SerializeField] int secondPhaseAttack;
     [SerializeField] float timeBetweenAttacks;
+    [Header("Boss Gun")]
+    [SerializeField] int amountPerShoot;
+    [SerializeField] float angle;
+    [SerializeField] Transform shootPosition;
+    [SerializeField] ProjectileBase projectilePrefab;
 
     StateMachine<BossAction> _stateMachine;
     List<GameObject> _waypoints;
@@ -36,6 +41,7 @@ public class BossBase : MonoBehaviour, IDamageable {
     AnimationBase _animation;
     int _currentLife;
     Player _player;
+    bool _onSecondPhase = false;
 
     void Awake() {
         Init();
@@ -78,7 +84,7 @@ public class BossBase : MonoBehaviour, IDamageable {
         if (particles != null) particles.Play();
         if (flash != null) flash.Flash();
         _currentLife -= damage;
-        if (_currentLife <= lifeAmount / 2) SecondPhase();
+        if (_currentLife <= lifeAmount / 2 && !_onSecondPhase) SecondPhase();
         if (_currentLife <= 0) OnKill();
     }
 
@@ -95,6 +101,17 @@ public class BossBase : MonoBehaviour, IDamageable {
         _player = GameObject.FindObjectOfType<Player>();
     }
 
+    void Shoot() {
+        int mult = 0;
+        for (int i = 0; i < amountPerShoot; i++) {
+            if (i % 2 == 0) mult++;
+            var projectile = Instantiate(projectilePrefab, shootPosition);
+            projectile.transform.localPosition = Vector3.zero;
+            projectile.transform.localEulerAngles = Vector3.zero + Vector3.up * (i % 2 == 0 ? angle : -angle) * mult;
+            projectile.transform.parent = null;
+        }
+    }
+
     void OnKill() {
         SwitchState(BossAction.DEATH);
     }
@@ -102,12 +119,9 @@ public class BossBase : MonoBehaviour, IDamageable {
     void SecondPhase() {
         speed *= 1.5f;
         attackAmount = secondPhaseAttack;
-        timeBetweenAttacks *= .8f;
-    }
-
-    [Button]
-    void Damage() {
-        OnDamage(1, Vector3.zero);
+        timeBetweenAttacks *= .5f;
+        amountPerShoot *= 2;
+        _onSecondPhase = true;
     }
 
     IEnumerator WalkCoroutine(Transform point, Action onArrive = null) {
@@ -123,6 +137,7 @@ public class BossBase : MonoBehaviour, IDamageable {
         while(attack < attackAmount) {
             attack++;
             transform.DOScale(2.5f, .3f);
+            Shoot();
             yield return new WaitForSeconds(.3f);
             transform.DOScale(2f, .1f);
             yield return new WaitForSeconds(timeBetweenAttacks);

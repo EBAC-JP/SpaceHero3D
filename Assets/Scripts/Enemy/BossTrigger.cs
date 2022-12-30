@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossTrigger : MonoBehaviour {
 
-    [SerializeField] GameObject bossPrefab;
+    [SerializeField] BossBase bossPrefab;
     [SerializeField] Transform bossSpawn;
 
     void SpawnBoss() {
