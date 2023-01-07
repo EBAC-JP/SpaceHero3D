@@ -112,7 +112,7 @@ public class BossBase : MonoBehaviour, IDamageable {
         }
     }
 
-    void OnKill() {
+    public void OnKill() {
         SwitchState(BossAction.DEATH);
     }
 

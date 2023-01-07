@@ -10,6 +10,8 @@ public class Player : Singleton<Player>, IDamageable {
     [Header("Animations")]
     [SerializeField] Animator myAnim;
     [SerializeField] string runTrigger = "Run";
+    [SerializeField] string deathTrigger = "Death";
+    [SerializeField] float deathDuration;
     [SerializeField] List<FlashColor> flashes;
     [Header("Jump")]
     [SerializeField] float jumpSpeed;
@@ -18,18 +20,24 @@ public class Player : Singleton<Player>, IDamageable {
     [SerializeField] float speed;
     [SerializeField] float runMultiplier;
     [SerializeField] KeyCode runKey;
+    [Header("Health")]
+    [SerializeField] int startLife;
 
     CharacterController _myChar;
+    Collider _collider;
     float _currentSpeed, _verticalSpeed;
-    bool _isWalking;
-    int _gunIndex = 0;
+    bool _isWalking, _isDead = false;
+    int _gunIndex = 0, _currentLife;
 
     void Start() {
         _myChar = GetComponent<CharacterController>();
+        _collider = GetComponent<Collider>();
         _verticalSpeed = 0f;
+        _currentLife = startLife;
     }
 
     void Update() {
+        if (_isDead) return;
         _currentSpeed = Input.GetAxis("Vertical");
         _isWalking = _currentSpeed != 0;
         _verticalSpeed -= gravity * Time.deltaTime;
@@ -68,16 +76,29 @@ public class Player : Singleton<Player>, IDamageable {
         _myChar.Move(frontSpeed * Time.deltaTime);
     }
 
+    void Damage(int damage) {
+        flashes.ForEach(i => i.Flash());
+        _currentLife -= damage;
+        if (_currentLife <= 0) OnKill();
+    }
+
     public int GetGunIndex() {
         return _gunIndex;
     }
 
     public void OnDamage(int damage) {
-        flashes.ForEach(i => i.Flash());
+        Damage(damage);
     }
 
     public void OnDamage(int damage, Vector3 direction) {
         transform.DOMove(transform.position - direction, .1f);
-        flashes.ForEach(i => i.Flash());
+        Damage(damage);
+    }
+
+    public void OnKill() {
+        _isDead = true;
+        if (_collider != null) _collider.enabled = false;
+        Destroy(gameObject, deathDuration);
+        myAnim.SetTrigger(deathTrigger);
     }
 }

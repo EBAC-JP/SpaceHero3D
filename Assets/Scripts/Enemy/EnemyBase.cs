@@ -35,7 +35,7 @@ public class EnemyBase : MonoBehaviour, IDamageable {
         transform.DOScale(0, startDuration).SetEase(startEase).From();
     }
 
-    protected virtual void OnKill() {
+    public void OnKill() {
         _isDead = true;
         if (_collider != null) _collider.enabled = false;
         Destroy(gameObject, deathDuration);
