@@ -23,7 +23,8 @@ public class UIUpdater : MonoBehaviour {
     }
 
     public void UpdateValue(float value) {
-        uiImage.fillAmount = value;
+        if (_currentTween != null) _currentTween.Kill();
+        _currentTween = uiImage.DOFillAmount(value, duration).SetEase(ease);
     }
 
 }
