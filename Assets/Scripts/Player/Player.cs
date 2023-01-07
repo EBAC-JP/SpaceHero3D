@@ -21,13 +21,14 @@ public class Player : Singleton<Player>, IDamageable {
     [SerializeField] float runMultiplier;
     [SerializeField] KeyCode runKey;
     [Header("Health")]
-    [SerializeField] int startLife;
+    [SerializeField] UIUpdater healthBar;
+    [SerializeField] float startLife;
 
     CharacterController _myChar;
     Collider _collider;
-    float _currentSpeed, _verticalSpeed;
+    float _currentSpeed, _verticalSpeed, _currentLife;
     bool _isWalking, _isDead = false;
-    int _gunIndex = 0, _currentLife;
+    int _gunIndex = 0;
 
     void Start() {
         _myChar = GetComponent<CharacterController>();
@@ -79,6 +80,8 @@ public class Player : Singleton<Player>, IDamageable {
     void Damage(int damage) {
         flashes.ForEach(i => i.Flash());
         _currentLife -= damage;
+        Debug.Log(_currentLife / startLife);
+        healthBar.UpdateValue(_currentLife / startLife);
         if (_currentLife <= 0) OnKill();
     }
 

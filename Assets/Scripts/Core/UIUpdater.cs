@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class UIGunUpdater : MonoBehaviour {
+public class UIUpdater : MonoBehaviour {
 
-    [SerializeField] Image gunLoader;
+    [SerializeField] Image uiImage;
     [Header("Animation")]
     [SerializeField] float duration;
     [SerializeField] Ease ease;
@@ -14,16 +14,16 @@ public class UIGunUpdater : MonoBehaviour {
     Tween _currentTween;
 
     void OnValidate() {
-        if (gunLoader == null) gunLoader = GetComponent<Image>();
+        if (uiImage == null) uiImage = GetComponent<Image>();
     }
 
     public void UpdateValue(float current, float max) {
         if (_currentTween != null) _currentTween.Kill();
-        _currentTween = gunLoader.DOFillAmount(1 - (current / max), duration).SetEase(ease);
+        _currentTween = uiImage.DOFillAmount(1 - (current / max), duration).SetEase(ease);
     }
 
     public void UpdateValue(float value) {
-        gunLoader.fillAmount = value;
+        uiImage.fillAmount = value;
     }
 
 }

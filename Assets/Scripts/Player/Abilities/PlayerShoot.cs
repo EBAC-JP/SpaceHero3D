@@ -10,7 +10,7 @@ public class PlayerShoot : PlayerAbility {
     [SerializeField] Transform shootPosition;
     [SerializeField] GunBase submachine;
     [SerializeField] GunBase pistol;
-    [SerializeField] UIGunUpdater UIGunUpdater;
+    [SerializeField] UIUpdater UIGunUpdater;
 
     Coroutine _currentCoroutine;
     GunBase _submachine, _pistol;

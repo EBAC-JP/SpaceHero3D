@@ -11,7 +11,7 @@ public class GunBase : MonoBehaviour {
     [SerializeField] int maxShoots;
 
     Transform _shootPosition;
-    UIGunUpdater _gunUpdater;
+    UIUpdater _gunUpdater;
     Coroutine _currentCoroutine;
     int _currentShoots;
     bool _recharging = false;
@@ -29,7 +29,7 @@ public class GunBase : MonoBehaviour {
         _shootPosition = shootPosition;
     }
 
-    public void SetGunUpdater(UIGunUpdater gunUpdater) {
+    public void SetGunUpdater(UIUpdater gunUpdater) {
         _gunUpdater = gunUpdater;
     }
 
