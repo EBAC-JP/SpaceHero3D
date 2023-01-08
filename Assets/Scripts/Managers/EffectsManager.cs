@@ -14,7 +14,6 @@ public class EffectsManager : Singleton<EffectsManager> {
         processVolume.profile.TryGetSettings<Vignette>(out _vignette);
     }
 
-    [NaughtyAttributes.Button]
     public void DisplayVignette() {
         StartCoroutine(FlashVignette());
     }

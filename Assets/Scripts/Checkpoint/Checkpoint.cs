@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour {
     bool _active = false;
 
     void OnTriggerEnter(Collider collider) {
-        if (!_active && collider.transform.tag == "Player") Active();
+        if (!_active && collider.CompareTag("Player")) Active();
     }
 
     void Active() {

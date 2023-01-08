@@ -10,7 +10,6 @@ public class BossTrigger : MonoBehaviour {
     void SpawnBoss() {
         var boss = Instantiate(bossPrefab);
         boss.transform.position = bossSpawn.position;
-
     }
 
     void OnTriggerEnter(Collider collider) {
