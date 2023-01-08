@@ -87,6 +87,7 @@ public class Player : Singleton<Player>, IDamageable {
         flashes.ForEach(i => i.Flash());
         _currentLife -= damage;
         healthBar.UpdateValue(_currentLife / startLife);
+        EffectsManager.Instance.DisplayVignette();
         if (_currentLife <= 0) OnKill();
     }
 
