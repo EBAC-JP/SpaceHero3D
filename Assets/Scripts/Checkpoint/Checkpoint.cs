@@ -9,7 +9,7 @@ public class Checkpoint : MonoBehaviour {
     [SerializeField] TMP_Text checkpointText;
     [SerializeField] float durationText;
     [SerializeField] string checkpointKey = "CheckpointKey";
-    [SerializeField] int valueKey;
+    [SerializeField] public int valueKey;
 
     bool _active = false;
 

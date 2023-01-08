@@ -11,6 +11,7 @@ public class Player : Singleton<Player>, IDamageable {
     [SerializeField] Animator myAnim;
     [SerializeField] string runTrigger = "Run";
     [SerializeField] string deathTrigger = "Death";
+    [SerializeField] string reviveTrigger = "Revive";
     [SerializeField] float deathDuration;
     [SerializeField] List<FlashColor> flashes;
     [Header("Jump")]
@@ -27,14 +28,13 @@ public class Player : Singleton<Player>, IDamageable {
     CharacterController _myChar;
     Collider _collider;
     float _currentSpeed, _verticalSpeed, _currentLife;
-    bool _isWalking, _isDead = false;
+    bool _isWalking, _isDead;
     int _gunIndex = 0;
 
     void Start() {
         _myChar = GetComponent<CharacterController>();
         _collider = GetComponent<Collider>();
-        _verticalSpeed = 0f;
-        _currentLife = startLife;
+        Init();
     }
 
     void Update() {
@@ -46,6 +46,12 @@ public class Player : Singleton<Player>, IDamageable {
         HandleMoviments();
         HandleAnimation();
         HandleGuns();
+    }
+
+    void Init() {
+        healthBar.UpdateValue(1);
+        _currentLife = startLife;
+        _isDead = false;
     }
 
     void HandleGuns() {
@@ -80,9 +86,24 @@ public class Player : Singleton<Player>, IDamageable {
     void Damage(int damage) {
         flashes.ForEach(i => i.Flash());
         _currentLife -= damage;
-        Debug.Log(_currentLife / startLife);
         healthBar.UpdateValue(_currentLife / startLife);
         if (_currentLife <= 0) OnKill();
+    }
+
+    void Revive() {
+        Init();
+        myAnim.SetTrigger(reviveTrigger);
+        Respawn();
+        Invoke(nameof(TurnOn), .1f);
+    }
+
+    void Respawn() {
+        transform.position = CheckpointManager.Instance.GetLastPosition();
+    }
+
+    void TurnOn() {
+        if (_collider != null) _collider.enabled = true;
+        if (_myChar != null) _myChar.enabled = true;
     }
 
     public int GetGunIndex() {
@@ -101,7 +122,8 @@ public class Player : Singleton<Player>, IDamageable {
     public void OnKill() {
         _isDead = true;
         if (_collider != null) _collider.enabled = false;
-        Destroy(gameObject, deathDuration);
+        if (_myChar != null) _myChar.enabled = false;
         myAnim.SetTrigger(deathTrigger);
+        Invoke(nameof(Revive), deathDuration);
     }
 }
