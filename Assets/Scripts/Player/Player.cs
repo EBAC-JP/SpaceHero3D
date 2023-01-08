@@ -88,6 +88,7 @@ public class Player : Singleton<Player>, IDamageable {
         _currentLife -= damage;
         healthBar.UpdateValue(_currentLife / startLife);
         EffectsManager.Instance.DisplayVignette();
+        ShakeCamera.Instance.Shake();
         if (_currentLife <= 0) OnKill();
     }
 
