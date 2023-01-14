@@ -5,13 +5,23 @@ using UnityEngine;
 public class InventoryManager : Singleton<InventoryManager> {
 
     [SerializeField] List<ItemSetup> itemSetups;
+    [SerializeField] UIItem prefabUI;
+    [SerializeField] Transform inventory;
 
     void Start() {
         Reset();
+        CreateUI();
     }
 
     void Reset() {
         itemSetups.ForEach(i => i.itemValue = 0);
+    }
+
+    void CreateUI() {
+        foreach(var setup in itemSetups) {
+            var itemUI = Instantiate(prefabUI, inventory);
+            itemUI.Load(setup);
+        }
     }
     
     public void AddByType(ItemType itemType, int amount = 1) {
@@ -37,5 +47,5 @@ public class ItemSetup {
 
     public ItemType itemType;
     public int itemValue;
-
+    public Sprite itemImage;
 }
