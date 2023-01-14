@@ -25,7 +25,6 @@ public class InventoryManager : Singleton<InventoryManager> {
         item.itemValue -= amount;
         if(item.itemValue < 0) item.itemValue = 0;
     }
-
 }
 
 public enum ItemType {
