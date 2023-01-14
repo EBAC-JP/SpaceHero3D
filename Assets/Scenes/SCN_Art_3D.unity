@@ -283,7 +283,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34424556}
-  m_LocalRotation: {x: -0.01326398, y: -0.382644, z: 0.0054941475, w: -0.92378426}
+  m_LocalRotation: {x: -0.013263956, y: -0.38264397, z: 0.0054941177, w: -0.92378426}
   m_LocalPosition: {x: 2.3342626, y: 2.0780869, z: 2.3342624}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1453,6 +1453,7 @@ GameObject:
   - component: {fileID: 326556783}
   - component: {fileID: 326556779}
   - component: {fileID: 326556784}
+  - component: {fileID: 326556785}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1553,6 +1554,7 @@ MonoBehaviour:
   speed: 15
   runMultiplier: 1.5
   runKey: 304
+  recoverFlashes: []
   healthBar: {fileID: 405524983}
   startLife: 15
 --- !u!143 &326556783
@@ -1589,6 +1591,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &326556785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326556778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40e8ae27e8ac8b45acb6b979d48f5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health:
+    m_Name: Health
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: cf520dda-1530-4ee6-87ee-78d4960988ca
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2687c99a-638a-4917-8e1e-19a67baaf8d1
+      m_Path: <Keyboard>/q
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Health
+      m_Flags: 0
+    m_Flags: 0
+  recoverAmount: 10
 --- !u!1001 &330281169
 PrefabInstance:
   m_ObjectHideFlags: 0

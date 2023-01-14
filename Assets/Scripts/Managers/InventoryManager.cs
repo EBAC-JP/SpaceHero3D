@@ -23,6 +23,10 @@ public class InventoryManager : Singleton<InventoryManager> {
             itemUI.Load(setup);
         }
     }
+
+    public int GetItemValueByType(ItemType itemType) {
+        return itemSetups.Find(i => i.itemType == itemType).itemValue;
+    }
     
     public void AddByType(ItemType itemType, int amount = 1) {
         if (amount < 0) return;

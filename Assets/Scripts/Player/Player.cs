@@ -22,6 +22,7 @@ public class Player : Singleton<Player>, IDamageable {
     [SerializeField] float runMultiplier;
     [SerializeField] KeyCode runKey;
     [Header("Health")]
+    [SerializeField] List<FlashColor> recoverFlashes;
     [SerializeField] UIUpdater healthBar;
     [SerializeField] float startLife;
 
@@ -106,6 +107,13 @@ public class Player : Singleton<Player>, IDamageable {
     void TurnOn() {
         if (_collider != null) _collider.enabled = true;
         if (_myChar != null) _myChar.enabled = true;
+    }
+
+    public void Recover(int amount) {
+        recoverFlashes.ForEach(i => i.Flash());
+        _currentLife += amount;
+        if (_currentLife > startLife) _currentLife = startLife;
+        healthBar.UpdateValue(_currentLife / startLife);
     }
 
     public int GetGunIndex() {
