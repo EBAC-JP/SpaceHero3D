@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Checkpoint
   - Destructable
+  - Coin
   layers:
   - Default
   - TransparentFX
