@@ -20,27 +20,30 @@ public class Chest : MonoBehaviour {
         _startKeyScale = key.transform.localScale.x;
     }
 
-    [NaughtyAttributes.Button]
     void OpenChest() {
         _animator.SetTrigger(openTrigger);
         HideNotification();
         _isOpened = true;
     }
 
-    [NaughtyAttributes.Button]
     void ShowNotification() {
         key.SetActive(true);
         key.transform.localScale = Vector3.zero;
         key.transform.DOScale(_startKeyScale, duration).SetEase(ease);
     }
 
-    [NaughtyAttributes.Button]
     void HideNotification() {
         key.SetActive(false);
     }
 
     void OnTriggerEnter(Collider collider) {
         if(collider.CompareTag("Player") && !_isOpened) ShowNotification();
+    }
+
+    void OnTriggerStay(Collider collider) {
+        if(collider.CompareTag("Player") && !_isOpened) {
+            if (Input.GetKeyDown(KeyCode.F)) OpenChest();
+        }
     }
 
     void OnTriggerExit(Collider collider) {
