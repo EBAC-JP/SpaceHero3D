@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Chest : MonoBehaviour {
 
     [SerializeField] string openTrigger = "Open";
+    [SerializeField] ChestItem chestItem;
     [Header("Show Key")]
     [SerializeField] GameObject key;
     [SerializeField] Ease ease;
@@ -20,10 +21,25 @@ public class Chest : MonoBehaviour {
         _startKeyScale = key.transform.localScale.x;
     }
 
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.F) && key.activeSelf) OpenChest();
+    }
+
     void OpenChest() {
+        if (_isOpened) return;
         _animator.SetTrigger(openTrigger);
         HideNotification();
         _isOpened = true;
+        Invoke(nameof(ShowItem), 1f);
+    }
+
+    void ShowItem() {
+        chestItem.ShowItem();
+        Invoke(nameof(Collect), 1f);
+    }
+
+    void Collect() {
+        chestItem.Collect();
     }
 
     void ShowNotification() {
@@ -38,12 +54,6 @@ public class Chest : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider) {
         if(collider.CompareTag("Player") && !_isOpened) ShowNotification();
-    }
-
-    void OnTriggerStay(Collider collider) {
-        if(collider.CompareTag("Player") && !_isOpened) {
-            if (Input.GetKeyDown(KeyCode.F)) OpenChest();
-        }
     }
 
     void OnTriggerExit(Collider collider) {
