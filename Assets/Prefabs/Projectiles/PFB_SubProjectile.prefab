@@ -114,6 +114,7 @@ MonoBehaviour:
   damage: 1
   tagsToHit:
   - Enemy
+  - Destructable
 --- !u!54 &1394764974135099982
 Rigidbody:
   m_ObjectHideFlags: 0

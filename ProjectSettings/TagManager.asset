@@ -8,6 +8,7 @@ TagManager:
   - BossWaypoints
   - Projectile
   - Checkpoint
+  - Destructable
   layers:
   - Default
   - TransparentFX
