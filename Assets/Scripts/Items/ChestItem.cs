@@ -28,14 +28,7 @@ public class ChestItem : MonoBehaviour {
             item.transform.DOMoveY(2f, duration).SetRelative();
             item.transform.DOScale(0f, duration / 2f).SetDelay(duration / 2f);
             InventoryManager.Instance.AddByType(itemType);
-            Invoke(nameof(ClearItens), 1.5f);
-        }
-    }
-
-    void ClearItens() {
-        foreach (var item in _itens) {
-            _itens.Remove(item);
-            Destroy(item);
+            Destroy(item, 1.5f);
         }
     }
 }
