@@ -14,6 +14,7 @@ public class ClothManager : Singleton<ClothManager> {
 }
 
 public enum ClothType {
+    BASIC,
     BASIC_V2,
     SPEED,
     DEFENSE
@@ -23,6 +24,6 @@ public enum ClothType {
 public class ClothSetup {
 
     public ClothType clothType;
-    public Texture clothTexture;
+    public Texture2D clothTexture;
     public Color visorColor;
 }

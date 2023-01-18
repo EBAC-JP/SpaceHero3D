@@ -25,9 +25,12 @@ public class Player : Singleton<Player>, IDamageable {
     [SerializeField] List<FlashColor> recoverFlashes;
     [SerializeField] UIUpdater healthBar;
     [SerializeField] float startLife;
+    [Header("Texture")]
+    [SerializeField] PlayerTexture playerTexture;
 
     CharacterController _myChar;
     Collider _collider;
+    ClothSetup _defaultSetup;
     float _currentSpeed, _verticalSpeed, _currentLife;
     bool _isWalking, _isDead;
     int _gunIndex = 0;
@@ -35,6 +38,7 @@ public class Player : Singleton<Player>, IDamageable {
     void Start() {
         _myChar = GetComponent<CharacterController>();
         _collider = GetComponent<Collider>();
+        _defaultSetup = ClothManager.Instance.GetSetupByType(ClothType.BASIC);
         Init();
     }
 
@@ -135,5 +139,17 @@ public class Player : Singleton<Player>, IDamageable {
         if (_myChar != null) _myChar.enabled = false;
         myAnim.SetTrigger(deathTrigger);
         Invoke(nameof(Revive), deathDuration);
+    }
+
+    public void ChangeTexture(ClothSetup setup) {
+        playerTexture.ChangeTextureBySetup(setup);
+    }
+
+    public void ResetTexture() {
+        playerTexture.ChangeTextureBySetup(_defaultSetup);
+    }
+
+    public void SetDefaultClothSetup(ClothSetup setup) {
+        _defaultSetup = setup;
     }
 }

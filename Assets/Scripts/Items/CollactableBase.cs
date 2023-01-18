@@ -20,7 +20,7 @@ public class CollactableBase : MonoBehaviour {
 
     protected virtual void Collect() {
         if (graphicItem != null) graphicItem.SetActive(false);
-        if (_collider) _collider.enabled = false;
+        if (_collider != null) _collider.enabled = false;
         OnCollect();
         Destroy(gameObject, deathDuration);
     }
