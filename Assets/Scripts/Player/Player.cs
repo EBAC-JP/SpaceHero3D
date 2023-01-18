@@ -113,6 +113,18 @@ public class Player : Singleton<Player>, IDamageable {
         if (_myChar != null) _myChar.enabled = true;
     }
 
+    void ResetTexture() {
+        playerTexture.ChangeTextureBySetup(_defaultSetup);
+    }
+
+    IEnumerator SpeedCoroutine(float newSpeed, float duration) {
+        float previousSpeed = speed;
+        speed = newSpeed;
+        yield return new WaitForSeconds(duration);
+        speed = previousSpeed;
+        ResetTexture();
+    }
+
     public void Recover(int amount) {
         recoverFlashes.ForEach(i => i.Flash());
         _currentLife += amount;
@@ -141,12 +153,12 @@ public class Player : Singleton<Player>, IDamageable {
         Invoke(nameof(Revive), deathDuration);
     }
 
-    public void ChangeTexture(ClothSetup setup) {
-        playerTexture.ChangeTextureBySetup(setup);
+    public void ChangeSpeed(float newSpeed, float duration) {
+        StartCoroutine(SpeedCoroutine(newSpeed, duration));
     }
 
-    public void ResetTexture() {
-        playerTexture.ChangeTextureBySetup(_defaultSetup);
+    public void ChangeTexture(ClothSetup setup) {
+        playerTexture.ChangeTextureBySetup(setup);
     }
 
     public void SetDefaultClothSetup(ClothSetup setup) {

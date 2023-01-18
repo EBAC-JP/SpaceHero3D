@@ -10,7 +10,7 @@ public class ClothItemBase : MonoBehaviour {
     [SerializeField] SkinnedMeshRenderer visor;
     [SerializeField] GameObject graphicItem;
 
-    ClothSetup _setup;
+    protected ClothSetup _setup;
     Collider _collider;
 
     void Start() {
