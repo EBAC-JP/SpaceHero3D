@@ -25,6 +25,7 @@ public class Player : Singleton<Player>, IDamageable {
     [SerializeField] List<FlashColor> recoverFlashes;
     [SerializeField] UIUpdater healthBar;
     [SerializeField] float startLife;
+    [SerializeField] float defense;
     [Header("Texture")]
     [SerializeField] PlayerTexture playerTexture;
 
@@ -90,7 +91,7 @@ public class Player : Singleton<Player>, IDamageable {
 
     void Damage(int damage) {
         flashes.ForEach(i => i.Flash());
-        _currentLife -= damage;
+        _currentLife -= (damage * defense);
         healthBar.UpdateValue(_currentLife / startLife);
         EffectsManager.Instance.DisplayVignette();
         ShakeCamera.Instance.Shake();
@@ -125,6 +126,14 @@ public class Player : Singleton<Player>, IDamageable {
         ResetTexture();
     }
 
+    IEnumerator DefenseCoroutine(float newDefense, float duration) {
+        float previousDefense = defense;
+        defense = newDefense;
+        yield return new WaitForSeconds(duration);
+        defense = previousDefense;
+        ResetTexture();
+    }
+
     public void Recover(int amount) {
         recoverFlashes.ForEach(i => i.Flash());
         _currentLife += amount;
@@ -155,6 +164,10 @@ public class Player : Singleton<Player>, IDamageable {
 
     public void ChangeSpeed(float newSpeed, float duration) {
         StartCoroutine(SpeedCoroutine(newSpeed, duration));
+    }
+
+    public void ChangeDefense(float newDefense, float duration) {
+        StartCoroutine(DefenseCoroutine(newDefense, duration));
     }
 
     public void ChangeTexture(ClothSetup setup) {
