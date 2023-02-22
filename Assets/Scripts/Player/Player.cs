@@ -12,6 +12,8 @@ public class Player : Singleton<Player>, IDamageable {
     [SerializeField] string runTrigger = "Run";
     [SerializeField] string deathTrigger = "Death";
     [SerializeField] string reviveTrigger = "Revive";
+    [SerializeField] string jumpTrigger = "Jump";
+    [SerializeField] string landTrigger = "Land";
     [SerializeField] float deathDuration;
     [SerializeField] List<FlashColor> flashes;
     [Header("Jump")]
@@ -33,7 +35,7 @@ public class Player : Singleton<Player>, IDamageable {
     Collider _collider;
     ClothSetup _defaultSetup;
     float _currentSpeed, _verticalSpeed, _currentLife;
-    bool _isWalking, _isDead;
+    bool _isWalking, _isDead, _jumping;
     int _gunIndex = 0;
 
     void Start() {
@@ -58,6 +60,7 @@ public class Player : Singleton<Player>, IDamageable {
         healthBar.UpdateValue(1);
         _currentLife = startLife;
         _isDead = false;
+        _jumping = false;
     }
 
     void HandleGuns() {
@@ -66,8 +69,18 @@ public class Player : Singleton<Player>, IDamageable {
     }
 
     void HandleJump() {
-        if (_myChar.isGrounded && Input.GetKeyDown(jumpKey)) {
-            _verticalSpeed = jumpSpeed;
+        if (_myChar.isGrounded) {
+            if (_jumping) {
+                _jumping = false;
+                myAnim.SetTrigger(landTrigger);
+            }
+            if (Input.GetKeyDown(jumpKey)) {
+                _verticalSpeed = jumpSpeed;
+                if (!_jumping) {
+                    _jumping = true;
+                    myAnim.SetTrigger(jumpTrigger);
+                }
+            }
         }
     }
 
