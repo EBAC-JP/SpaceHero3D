@@ -11,6 +11,10 @@ public class ClothManager : Singleton<ClothManager> {
         return clothSetups.Find(i => i.clothType == type);
     }
 
+    public ClothSetup GetSetupByValue(int value) {
+        return clothSetups.Find(i => i.clothValue == value);
+    }
+
 }
 
 public enum ClothType {
@@ -26,4 +30,5 @@ public class ClothSetup {
     public ClothType clothType;
     public Texture2D clothTexture;
     public Color visorColor;
+    public int clothValue;
 }

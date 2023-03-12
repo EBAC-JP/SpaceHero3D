@@ -75,7 +75,7 @@ public class BossBase : MonoBehaviour, IDamageable {
         if (_collider != null) _collider.enabled = false;
         Destroy(gameObject, deathDuration);
         _animation.PlayAnimationByTrigger(AnimationType.DEATH);
-        LevelManager.Instance.LoadEndLevel();
+        GameManager.Instance.LoadEndLevel();
     }
 
     public void SwitchState(BossAction state) {

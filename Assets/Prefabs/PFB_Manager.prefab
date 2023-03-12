@@ -104,15 +104,19 @@ MonoBehaviour:
   - clothType: 0
     clothTexture: {fileID: 2800000, guid: 8d0f7b33a4f3bf5459574270675b2718, type: 3}
     visorColor: {r: 1, g: 1, b: 1, a: 0}
+    clothValue: 0
   - clothType: 1
     clothTexture: {fileID: 2800000, guid: aee8f32aeb179e54992ef8a0ea41aa0b, type: 3}
     visorColor: {r: 1, g: 0.8666667, b: 0, a: 0}
+    clothValue: 1
   - clothType: 2
     clothTexture: {fileID: 2800000, guid: b48620bbc7ce02c4f8f3133fb13bb288, type: 3}
     visorColor: {r: 0.15294118, g: 1, b: 0, a: 0}
+    clothValue: 2
   - clothType: 3
     clothTexture: {fileID: 2800000, guid: 41a1406999b67184197cfb80793bab43, type: 3}
     visorColor: {r: 0.32156864, g: 0.02745098, b: 1, a: 0}
+    clothValue: 3
 --- !u!114 &8346344390653314491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +129,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f6c106d02555e4d81513a173834451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endScreen: {fileID: 0}
+  player: {fileID: 0}

@@ -88,8 +88,9 @@ MonoBehaviour:
   runKey: 304
   recoverFlashes: []
   healthBar: {fileID: 0}
-  startLife: 15
+  maxLife: 25
   defense: 1
+  clothKey: ClothKey
   playerTexture: {fileID: 5248196907723057400}
 --- !u!143 &5248196907723057381
 CharacterController:
@@ -15563,19 +15564,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4280592042955761148, guid: 89e20167823a30d459856414377997d1, type: 3}
   m_PrefabInstance: {fileID: 5248196909529220461}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5248196907849888761
+--- !u!114 &5248196909632739647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3534318855936296554}
+  m_GameObject: {fileID: 1383807975914260242}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 455fe1a164d2dc44f8d4fd3398910735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinned: {fileID: 4530797624157213233}
+  skinned: {fileID: 8882876172895250170}
   mesh: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 0}
   duration: 0.2
@@ -15595,19 +15596,19 @@ MonoBehaviour:
   mesh: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 0}
   duration: 0.2
---- !u!114 &5248196909632739647
+--- !u!114 &5248196907849888761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1383807975914260242}
+  m_GameObject: {fileID: 3534318855936296554}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 455fe1a164d2dc44f8d4fd3398910735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinned: {fileID: 8882876172895250170}
+  skinned: {fileID: 4530797624157213233}
   mesh: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 0}
   duration: 0.2

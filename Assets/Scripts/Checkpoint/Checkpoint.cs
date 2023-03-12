@@ -22,6 +22,7 @@ public class Checkpoint : MonoBehaviour {
         PlayerPrefs.SetInt(checkpointKey, valueKey);
         meshRenderer.material.EnableKeyword("_EMISSION");
         if (checkpointText != null) StartCoroutine(ShowText());
+        SaveManager.Instance.SaveCheckpoint();
     }
 
     IEnumerator ShowText() {

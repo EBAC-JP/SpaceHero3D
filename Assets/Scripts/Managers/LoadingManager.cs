@@ -2,16 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LoadingManager : MonoBehaviour {
 
-    [SerializeField] string levelKey = "LevelKey";
-    [SerializeField] int firstLevelValue = 2;
-    [SerializeField] UIUpdater loadBar;
+    [SerializeField] Image loadBar;
 
     void Start() {
-        int level = PlayerPrefs.GetInt(levelKey, firstLevelValue);
+        int level = SaveManager.Instance.GetCurrentLevel();
         StartCoroutine(LoadSceneAsync(level));
     }
 
@@ -19,7 +18,7 @@ public class LoadingManager : MonoBehaviour {
         AsyncOperation operation = SceneManager.LoadSceneAsync(level);
         while (!operation.isDone) {
             float progressValue = Mathf.Clamp01(operation.progress / .9f);
-            loadBar.UpdateValue(progressValue);
+            loadBar.fillAmount = progressValue;
             yield return null;
         }
     }

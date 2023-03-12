@@ -26,9 +26,10 @@ public class Player : Singleton<Player>, IDamageable {
     [Header("Health")]
     [SerializeField] List<FlashColor> recoverFlashes;
     [SerializeField] UIUpdater healthBar;
-    [SerializeField] float startLife;
+    [SerializeField] float maxLife;
     [SerializeField] float defense;
     [Header("Texture")]
+    [SerializeField] string clothKey = "ClothKey";
     [SerializeField] PlayerTexture playerTexture;
 
     CharacterController _myChar;
@@ -41,7 +42,8 @@ public class Player : Singleton<Player>, IDamageable {
     void Start() {
         _myChar = GetComponent<CharacterController>();
         _collider = GetComponent<Collider>();
-        _defaultSetup = ClothManager.Instance.GetSetupByType(ClothType.BASIC);
+        _defaultSetup = ClothManager.Instance.GetSetupByValue(PlayerPrefs.GetInt(clothKey, 0));
+        ResetTexture();
         Respawn();
         Init();
     }
@@ -57,9 +59,10 @@ public class Player : Singleton<Player>, IDamageable {
         HandleGuns();
     }
 
-    void Init() {
-        healthBar.UpdateValue(1);
-        _currentLife = startLife;
+    void Init(bool respawn = false) {
+        if(!respawn) _currentLife = SaveManager.Instance.GetCurrentPlayerLife();
+        else _currentLife = maxLife;
+        healthBar.UpdateValue(_currentLife / maxLife);
         _isDead = false;
         _jumping = false;
         _endLevel = false;
@@ -107,14 +110,14 @@ public class Player : Singleton<Player>, IDamageable {
     void Damage(int damage) {
         flashes.ForEach(i => i.Flash());
         _currentLife -= (damage * defense);
-        healthBar.UpdateValue(_currentLife / startLife);
+        healthBar.UpdateValue(_currentLife / maxLife);
         EffectsManager.Instance.DisplayVignette();
         ShakeCamera.Instance.Shake();
         if (_currentLife <= 0) OnKill();
     }
 
     void Revive() {
-        Init();
+        Init(true);
         myAnim.SetTrigger(reviveTrigger);
         Respawn();
         Invoke(nameof(TurnOn), .1f);
@@ -157,8 +160,8 @@ public class Player : Singleton<Player>, IDamageable {
     public void Recover(int amount) {
         recoverFlashes.ForEach(i => i.Flash());
         _currentLife += amount;
-        if (_currentLife > startLife) _currentLife = startLife;
-        healthBar.UpdateValue(_currentLife / startLife);
+        if (_currentLife > maxLife) _currentLife = maxLife;
+        healthBar.UpdateValue(_currentLife / maxLife);
     }
 
     public int GetGunIndex() {
@@ -196,5 +199,10 @@ public class Player : Singleton<Player>, IDamageable {
 
     public void SetDefaultClothSetup(ClothSetup setup) {
         _defaultSetup = setup;
+        PlayerPrefs.SetInt(clothKey, _defaultSetup.clothValue);
+    }
+
+    public float GetCurrentLife() {
+        return _currentLife;
     }
 }
