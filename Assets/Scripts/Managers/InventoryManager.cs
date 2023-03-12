@@ -14,7 +14,8 @@ public class InventoryManager : Singleton<InventoryManager> {
     }
 
     void Reset() {
-        itemSetups.ForEach(i => i.itemValue = 0);
+        itemSetups.Find(i => i.itemType == ItemType.COIN).itemValue = SaveManager.Instance.GetCoins();
+        itemSetups.Find(i => i.itemType == ItemType.LIFE).itemValue = SaveManager.Instance.GetLifes();
     }
 
     void CreateUI() {

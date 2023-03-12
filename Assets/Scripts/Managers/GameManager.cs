@@ -19,6 +19,16 @@ public class GameManager : Singleton<GameManager> {
         SaveManager.Instance.SaveEndLevel();
     }
 
+    public void LoadGame() {
+        SaveManager.Instance.Load();
+        LoadScene(1);
+    }
+
+    public void NewGame() {
+        SaveManager.Instance.NewGame();
+        LoadScene(1);
+    }
+
     public void LoadScene(int value) {
         SceneManager.LoadScene(value);
     }
