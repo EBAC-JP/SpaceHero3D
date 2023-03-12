@@ -10,6 +10,7 @@ public class SaveManager : Singleton<SaveManager> {
 
     protected override void Awake() {
         base.Awake();
+        DontDestroyOnLoad(gameObject);
         _saveSetup = new SaveSetup(1, 1);
         path = Application.persistentDataPath + "/save.txt";
     }

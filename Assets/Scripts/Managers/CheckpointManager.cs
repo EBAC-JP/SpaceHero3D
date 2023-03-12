@@ -10,7 +10,6 @@ public class CheckpointManager : Singleton<CheckpointManager> {
 
     public Vector3 GetLastPosition() {
         int valueKey = PlayerPrefs.GetInt(checkpointKey, 0);
-        Debug.Log(valueKey);
         if (valueKey > 0) {
             return GetCheckpointPosition(valueKey);
         }
