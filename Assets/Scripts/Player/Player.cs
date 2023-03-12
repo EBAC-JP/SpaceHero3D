@@ -35,18 +35,19 @@ public class Player : Singleton<Player>, IDamageable {
     Collider _collider;
     ClothSetup _defaultSetup;
     float _currentSpeed, _verticalSpeed, _currentLife;
-    bool _isWalking, _isDead, _jumping;
+    bool _isWalking, _isDead, _jumping, _endLevel;
     int _gunIndex = 0;
 
     void Start() {
         _myChar = GetComponent<CharacterController>();
         _collider = GetComponent<Collider>();
         _defaultSetup = ClothManager.Instance.GetSetupByType(ClothType.BASIC);
+        Respawn();
         Init();
     }
 
     void Update() {
-        if (_isDead) return;
+        if (_isDead || _endLevel) return;
         _currentSpeed = Input.GetAxis("Vertical");
         _isWalking = _currentSpeed != 0;
         _verticalSpeed -= gravity * Time.deltaTime;
@@ -61,6 +62,7 @@ public class Player : Singleton<Player>, IDamageable {
         _currentLife = startLife;
         _isDead = false;
         _jumping = false;
+        _endLevel = false;
     }
 
     void HandleGuns() {
@@ -145,6 +147,11 @@ public class Player : Singleton<Player>, IDamageable {
         yield return new WaitForSeconds(duration);
         defense = previousDefense;
         ResetTexture();
+    }
+
+    public void SetEndLevel() {
+        _endLevel = true;
+        gameObject.GetComponent<PlayerShoot>().DisableShoot();
     }
 
     public void Recover(int amount) {

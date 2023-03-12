@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 using NaughtyAttributes;
 
@@ -34,6 +35,8 @@ public class BossBase : MonoBehaviour, IDamageable {
     [SerializeField] float angle;
     [SerializeField] Transform shootPosition;
     [SerializeField] ProjectileBase projectilePrefab;
+    [Header("Events")]
+    [SerializeField] UnityEvent killEvent;
 
     StateMachine<BossAction> _stateMachine;
     List<GameObject> _waypoints;
@@ -72,6 +75,7 @@ public class BossBase : MonoBehaviour, IDamageable {
         if (_collider != null) _collider.enabled = false;
         Destroy(gameObject, deathDuration);
         _animation.PlayAnimationByTrigger(AnimationType.DEATH);
+        LevelManager.Instance.LoadEndLevel();
     }
 
     public void SwitchState(BossAction state) {

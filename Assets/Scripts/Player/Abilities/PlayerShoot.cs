@@ -22,6 +22,10 @@ public class PlayerShoot : PlayerAbility {
         shoot.canceled += ctx => StopShoot();
     }
 
+    public void DisableShoot() {
+        shoot.Disable();
+    }
+
     void CreateGuns() {
         CreateSubMachine();
         CreatePistol();

@@ -4944,7 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b5b991669702a4cb68a11cbdb23b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeAmount: 30
+  lifeAmount: 1
   flash: {fileID: 4956463612347185153}
   particles: {fileID: 1882450109932399578}
   deathDuration: 3
@@ -4959,6 +4959,9 @@ MonoBehaviour:
   angle: 15
   shootPosition: {fileID: 1711138365376242696}
   projectilePrefab: {fileID: 8045105011210427552, guid: 981a2990da2793f45af31fda15df4eb4, type: 3}
+  killEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &5018057982445288756
 Rigidbody:
   m_ObjectHideFlags: 0

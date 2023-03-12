@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8906280046131655358}
   - component: {fileID: 8906280046131655359}
   - component: {fileID: 8906280046131655296}
+  - component: {fileID: 8346344390653314491}
   m_Layer: 0
   m_Name: PFB_Manager
   m_TagString: Untagged
@@ -112,3 +113,15 @@ MonoBehaviour:
   - clothType: 3
     clothTexture: {fileID: 2800000, guid: 41a1406999b67184197cfb80793bab43, type: 3}
     visorColor: {r: 0.32156864, g: 0.02745098, b: 1, a: 0}
+--- !u!114 &8346344390653314491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906280046131655354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f6c106d02555e4d81513a173834451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
