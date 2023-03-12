@@ -11,11 +11,10 @@ public class SaveManager : Singleton<SaveManager> {
     protected override void Awake() {
         base.Awake();
         DontDestroyOnLoad(gameObject);
-        _saveSetup = new SaveSetup(1, 1);
+        _saveSetup = new SaveSetup();
         path = Application.persistentDataPath + "/save.txt";
     }
 
-    [NaughtyAttributes.Button]
     void Save() {
         string setupJson = JsonUtility.ToJson(_saveSetup, true);
         Debug.Log(setupJson);
@@ -23,7 +22,6 @@ public class SaveManager : Singleton<SaveManager> {
     }
 
     void SaveFile(string json) {
-        Debug.Log(path);
         File.WriteAllText(path, json);
     }
 
@@ -33,10 +31,6 @@ public class SaveSetup {
 
     public int currentLevel;
     public int currentCheckpoint;
-
-    public SaveSetup(int level, int checkpoint) {
-        currentLevel = level;
-        currentCheckpoint = checkpoint;
-    }
-
+    public int coins;
+    public int lifeItem;
 }
