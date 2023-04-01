@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager> {
     public void NextLevel() {
         PlayerPrefs.SetInt(checkpointKey, 0);
         SaveManager.Instance.SaveEndLevel();
+        LoadScene(1);
     }
 
     public void LoadGame() {

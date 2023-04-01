@@ -1,4 +1,3 @@
-using System.Security.AccessControl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +12,11 @@ public class AudioManager : Singleton<AudioManager> {
         DontDestroyOnLoad(gameObject);
     }
 
-    public void GetMusicClipByType(MusicType musicType) {
+    public AudioClip GetMusicClipByType(MusicType musicType) {
         return musicSetups.Find(i => i.musicType == musicType).musicClip;
     }
 
-    public void GetSFXClipByType(SFXType sfxType) {
+    public AudioClip GetSFXClipByType(SFXType sfxType) {
         return sfxSetups.Find(i => i.sfxType == sfxType).sfxClip;
     }
 
