@@ -4944,7 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b5b991669702a4cb68a11cbdb23b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeAmount: 1
+  lifeAmount: 30
   flash: {fileID: 4956463612347185153}
   particles: {fileID: 1882450109932399578}
   deathDuration: 3
