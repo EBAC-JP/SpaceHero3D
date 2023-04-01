@@ -4424,7 +4424,21 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: cfbdc6ff9a638984bad8500120879441, type: 3}
   - musicType: 2
     musicClip: {fileID: 8300000, guid: 8ef84e4fab29f9a4e854e4af19258814, type: 3}
-  sfxSetups: []
+  sfxSetups:
+  - sfxType: 0
+    sfxClip: {fileID: 8300000, guid: e51a2ccbb612dc446a2f96c692a51507, type: 3}
+  - sfxType: 1
+    sfxClip: {fileID: 8300000, guid: 23fbd80f7635a894daf6c9398c91eb4b, type: 3}
+  - sfxType: 2
+    sfxClip: {fileID: 8300000, guid: 08d27e2667ce5f846a42baadae0d757c, type: 3}
+  - sfxType: 3
+    sfxClip: {fileID: 8300000, guid: 39966e0ddd696744fa066e16faf08c9d, type: 3}
+  - sfxType: 4
+    sfxClip: {fileID: 8300000, guid: dc6d136e55a5b9e4b9e169059845362f, type: 3}
+  - sfxType: 5
+    sfxClip: {fileID: 8300000, guid: 88b3dce8cb8257b4490eabce6e82f2d7, type: 3}
+  - sfxType: 6
+    sfxClip: {fileID: 8300000, guid: cf347579d9138f14e8a12fe90576f85c, type: 3}
 --- !u!4 &2121373637
 Transform:
   m_ObjectHideFlags: 0

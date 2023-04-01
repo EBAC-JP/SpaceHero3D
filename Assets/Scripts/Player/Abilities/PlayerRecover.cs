@@ -8,6 +8,7 @@ public class PlayerRecover : PlayerAbility {
     [SerializeField] InputAction health;
     [SerializeField] int recoverAmount;
     [SerializeField] ParticleSystem particle;
+    [SerializeField] SFXType sfxType;
 
     protected override void Init() {
         health.Enable();
@@ -16,6 +17,7 @@ public class PlayerRecover : PlayerAbility {
 
     void Recover() {
         if (InventoryManager.Instance.GetItemValueByType(ItemType.LIFE) > 0) {
+            player.PlaySFX(sfxType);
             player.Recover(recoverAmount);
             InventoryManager.Instance.RemoveByType(ItemType.LIFE);
             particle?.Play();

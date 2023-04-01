@@ -35,6 +35,7 @@ public class Player : Singleton<Player>, IDamageable {
     CharacterController _myChar;
     Collider _collider;
     ClothSetup _defaultSetup;
+    AudioSource _audioSource;
     float _currentSpeed, _verticalSpeed, _currentLife;
     bool _isWalking, _isDead, _jumping, _endLevel;
     int _gunIndex = 0;
@@ -42,6 +43,7 @@ public class Player : Singleton<Player>, IDamageable {
     void Start() {
         _myChar = GetComponent<CharacterController>();
         _collider = GetComponent<Collider>();
+        _audioSource = GetComponent<AudioSource>();
         _defaultSetup = ClothManager.Instance.GetSetupByValue(PlayerPrefs.GetInt(clothKey, 0));
         ResetTexture();
         Respawn();
@@ -80,6 +82,7 @@ public class Player : Singleton<Player>, IDamageable {
                 myAnim.SetTrigger(landTrigger);
             }
             if (Input.GetKeyDown(jumpKey)) {
+                PlaySFX(SFXType.JUMP);
                 _verticalSpeed = jumpSpeed;
                 if (!_jumping) {
                     _jumping = true;
@@ -154,6 +157,7 @@ public class Player : Singleton<Player>, IDamageable {
 
     public void SetEndLevel() {
         _endLevel = true;
+        PlaySFX(SFXType.WIN);
         gameObject.GetComponent<PlayerShoot>().DisableShoot();
     }
 
@@ -204,5 +208,10 @@ public class Player : Singleton<Player>, IDamageable {
 
     public float GetCurrentLife() {
         return _currentLife;
+    }
+
+    public void PlaySFX(SFXType sfxType) {
+        _audioSource.clip = AudioManager.Instance.GetSFXClipByType(sfxType);
+        _audioSource.Play();
     }
 }

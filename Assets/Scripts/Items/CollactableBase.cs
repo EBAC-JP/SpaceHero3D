@@ -11,11 +11,17 @@ public class CollactableBase : MonoBehaviour {
     [SerializeField] ParticleSystem particle;
     [SerializeField] AudioSource audioSource;
     [SerializeField] float deathDuration;
+    [SerializeField] SFXType sfxType;
     
     Collider _collider;
 
     void Start() {
         _collider = GetComponent<Collider>();
+    }
+
+    void PlaySFX() {
+        audioSource.clip = AudioManager.Instance.GetSFXClipByType(sfxType);
+        audioSource.Play();
     }
 
     protected virtual void Collect() {
@@ -27,7 +33,7 @@ public class CollactableBase : MonoBehaviour {
 
     protected virtual void OnCollect() {
         if (particle != null) particle.Play();
-        if (audioSource != null) audioSource.Play();
+        if (audioSource != null) PlaySFX();
         InventoryManager.Instance.AddByType(itemType);
     }
 

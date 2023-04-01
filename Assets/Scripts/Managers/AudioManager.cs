@@ -36,9 +36,13 @@ public class MusicSetup {
 }
 
 public enum SFXType {
-    TYPE_01,
-    TYPE_02,
-    TYPE_03
+    SHOOT,
+    CRY,
+    JUMP,
+    COIN,
+    HEALTH,
+    WIN,
+    CHECKPOINT
 }
 
 [System.Serializable]

@@ -12,8 +12,10 @@ public class EnemyBase : MonoBehaviour, IDamageable {
     [SerializeField] bool bornAnimation;
     [Header("Animation")]
     [SerializeField] float deathDuration;
-    [Header("Damage Animation")]
+    [Header("Damage")]
     [SerializeField] ParticleSystem particles;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] SFXType sfxType;
 
     protected AnimationBase _animation;
     protected bool _isDead = false;
@@ -25,6 +27,11 @@ public class EnemyBase : MonoBehaviour, IDamageable {
         _collider = GetComponent<Collider>();
         if (bornAnimation) BornAnimation();
         ResetLife();
+    }
+
+    void PlaySFX() {
+        audioSource.clip = AudioManager.Instance.GetSFXClipByType(sfxType);
+        audioSource.Play();
     }
 
     void ResetLife() {
@@ -46,6 +53,7 @@ public class EnemyBase : MonoBehaviour, IDamageable {
 
     public void OnDamage(int damage, Vector3 direction) {
         if (particles != null) particles.Play();
+        if (audioSource != null) PlaySFX();
         transform.DOMove(transform.position - direction, .1f);
         _currentLife -= damage;
         if (_currentLife <= 0) OnKill();

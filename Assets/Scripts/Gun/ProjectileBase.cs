@@ -8,13 +8,22 @@ public class ProjectileBase : MonoBehaviour {
     [SerializeField] float speed;
     [SerializeField] int damage;
     [SerializeField] List<string> tagsToHit;
+    [Header("Audio")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] SFXType sfxType;
 
     void Awake() {
+        if (audioSource != null) PlaySFX();
         Destroy(gameObject, timeDestroy);
     }
 
     void Update() {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+
+    void PlaySFX() {
+        audioSource.clip = AudioManager.Instance.GetSFXClipByType(sfxType);
+        audioSource.Play();
     }
 
     void ApplyDamage(Collision collision) {

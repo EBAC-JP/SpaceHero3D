@@ -10,6 +10,8 @@ public class Checkpoint : MonoBehaviour {
     [SerializeField] float durationText;
     [SerializeField] string checkpointKey = "CheckpointKey";
     [SerializeField] public int valueKey;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] SFXType sfxType;
 
     bool _active = false;
 
@@ -17,7 +19,13 @@ public class Checkpoint : MonoBehaviour {
         if (!_active && collider.CompareTag("Player")) Active();
     }
 
+    void PlaySFX() {
+        audioSource.clip = AudioManager.Instance.GetSFXClipByType(sfxType);
+        audioSource.Play();
+    }
+
     void Active() {
+        if (audioSource != null) PlaySFX();
         _active = true;
         PlayerPrefs.SetInt(checkpointKey, valueKey);
         meshRenderer.material.EnableKeyword("_EMISSION");
