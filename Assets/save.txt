@@ -1,8 +1,0 @@
-{
-    "currentLevel": 3,
-    "currentCheckpoint": 0,
-    "coins": 4,
-    "lifes": 0,
-    "playerLife": 25.0,
-    "clothValue": 0
-}
